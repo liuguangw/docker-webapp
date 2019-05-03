@@ -1,14 +1,34 @@
 # 流光的docker环境
 这是一个使用[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具构建的lnmp环境：nginx+php+mysql+redis
 
-### 安装方法
+### docker环境安装
 
-首先需要安装[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具，然后复制[.env.dist](.env.dist)文件到`.env`,参考文件内的注释修改，最后执行`run.sh`脚本文件即可启动。
+如果已经安装了装[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具，可以忽略docker环境安装步骤。
+
+#### 安装docker
 
 ```bash
+wget -qO- https://get.docker.com/ | sh
+```
+
+#### 安装docker-compose
+
+```bash
+curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+
+### 项目环境安装方法
+
+```bash
+#克隆项目到本地
 git clone https://github.com/liuguangw/docker-webapp.git
 cd docker-webapp
+#给脚本添加执行权限
 chmod +x *.sh
+#复制 .env.dist 到 .env (复制后注意:参考.env文件内的资料,修改初始密码等信息!!!!)
+copy .env.dist .env
+#启动
 ./run.sh
 ```
 
@@ -72,6 +92,14 @@ php_server     docker-php-entrypoint php-fpm    Up      9000/tcp
 redis_server   docker-entrypoint.sh /etc/ ...   Up      6379/tcp
 ```
 
+> 可以看到，只有nginx的443、80端口，被映射到了宿主机的端口，其它端口只有在容器内部才可以互相访问。
+>
+> 所以如果php脚本需要访问MySQL服务，只需要连接db_server:3306即可,Redis的则为redis_server:6379。
+>
+> 建议通过环境变量获取对应服务的host，具体可见[index.php](app/sites/localhost/public/index.php)中的示例。
+
+
+
 进入服务容器的命令行
 
 ```bash
@@ -86,6 +114,15 @@ docker-compose exec 服务名 bash
 | web服务 | nginx         |
 | redis   | redis_server  |
 | 数据库  | db_server     |
+
+#### 管理数据库、Redis脚本
+
+```bash
+#管理数据库
+./admin_db.sh
+#管理Redis
+./admin_redis.sh
+```
 
 ### 备份与还原
 

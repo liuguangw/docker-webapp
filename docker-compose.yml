@@ -29,7 +29,7 @@ services:
             - ./app/config/nginx/phpfpm.conf:/etc/nginx/phpfpm.conf:ro
             - ./app/config/nginx/vhost:/etc/nginx/vhost:ro
             - ./app/sites:/home/sites:ro
-            - ./app/logs/nginx_logs:/var/log/nginx/logs:rw
+            - ./logs/nginx_logs:/var/log/nginx/logs:rw
         working_dir: /var/log/nginx
         environment:
             TZ: ${TIME_ZONE}

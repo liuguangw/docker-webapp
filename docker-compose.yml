@@ -16,6 +16,7 @@ services:
         working_dir: /home/sites
         environment:
             DB_HOST: db_server
+            REDIS_HOST: redis_server
             COMPOSER_MIRROR_URL: ${COMPOSER_MIRROR_URL}
             TZ: ${TIME_ZONE}
         container_name: php_server

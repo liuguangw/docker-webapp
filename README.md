@@ -3,13 +3,13 @@
 
 ### 安装方法
 
-首先需要安装[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具，然后复制[.env.dist](.env.dist)文件到`.env`,参考文件内的注释修改，最后执行`start.sh`脚本文件即可启动。
+首先需要安装[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具，然后复制[.env.dist](.env.dist)文件到`.env`,参考文件内的注释修改，最后执行`run.sh`脚本文件即可启动。
 
 ```bash
 git clone https://github.com/liuguangw/docker-webapp.git
 cd docker-webapp
 chmod +x *.sh
-./start.sh
+./run.sh
 ```
 
 ### 文件目录说明
@@ -44,7 +44,7 @@ backup - 备份
 	...
 .env - docker-compose服务环境变量配置文件
 docker-compose.yml docker-compose项目定义文件
-start.sh - 服务启动脚本
+run.sh - 服务启动脚本
 stop.sh - 服务停止脚本
 admin_db.sh - 数据库管理脚本
 admin_redis.sh - redis管理脚本

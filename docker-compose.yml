@@ -12,8 +12,8 @@ services:
         restart: always
         volumes:
             - ./app/config/php/php.ini:/usr/local/etc/php/php.ini:ro
-            - ./app/sites:/home/sites:rw
-        working_dir: /home/sites
+            - ./app/sites:/var/www/sites:rw
+        working_dir: /var/www/sites
         environment:
             DB_HOST: db_server
             REDIS_HOST: redis_server
@@ -29,7 +29,7 @@ services:
             - ./app/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
             - ./app/config/nginx/phpfpm.conf:/etc/nginx/phpfpm.conf:ro
             - ./app/config/nginx/vhost:/etc/nginx/vhost:ro
-            - ./app/sites:/home/sites:ro
+            - ./app/sites:/var/www/sites:ro
             - ./logs/nginx_logs:/var/log/nginx/logs:rw
         working_dir: /var/log/nginx
         environment:

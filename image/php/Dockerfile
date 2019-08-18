@@ -11,8 +11,9 @@ RUN chmod a+x /usr/local/bin/docker-php-entrypoint \
 		sed  -i "s#deb.debian.org/debian#${DEBIAN_APT_MIRROR_URL}#g"  /etc/apt/sources.list; \
 	fi \
 	&& apt-get update && apt-get install -y --no-install-recommends \
-		procps \
-		git \
+	procps \
+	git \
+	unzip \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \

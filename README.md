@@ -14,7 +14,7 @@ wget -qO- https://get.docker.com/ | sh
 #### 安装docker-compose
 
 ```bash
-curl -L https://github.com/docker/compose/releases/download/1.24.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 ```
 
@@ -122,6 +122,8 @@ docker-compose exec 服务名 bash
 ./admin_db.sh
 #管理Redis
 ./admin_redis.sh
+#进入php容器
+./admin_php.sh
 ```
 
 ### 备份与还原

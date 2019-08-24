@@ -2,13 +2,7 @@ version: '3'
 
 services:
     php_server:
-        image: php_server:latest
-        build:
-            context: ./image/php
-            args:
-                PHP_IMAGE_VERSION: ${PHP_IMAGE_VERSION}
-                DEBIAN_APT_MIRROR_URL: ${DEBIAN_APT_MIRROR_URL}
-                COMPOSER_DOWNLOAD_MIRROR_URL: ${COMPOSER_DOWNLOAD_MIRROR_URL}
+        image: liuguangw/docker-php:latest
         restart: always
         volumes:
             - ./app/config/php/php.ini:/usr/local/etc/php/php.ini:ro

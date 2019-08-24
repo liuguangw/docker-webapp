@@ -1,6 +1,10 @@
 # 流光的docker环境
 这是一个使用[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具构建的lnmp环境：nginx+php+mysql+redis
 
+### 简介
+
+docker是一个类似于虚拟机的运行环境，可以做到比较好的隔离效果，同时docker比虚拟机更轻，占用资源也少得多。本项目用到了4个docker容器，采用docker-compose管理容器，不用去输入复杂的命令来一个个启动容器。`docker-compose.yml`是它的配置文件，里面设置 了容器的目录挂载，端口映射等等。.env是docker-compose的环境变量配置。
+
 ### docker环境安装
 
 如果已经安装了装[docker](https://www.docker.com/)、[docker-compose](https://github.com/docker/compose)工具，可以忽略docker环境安装步骤。

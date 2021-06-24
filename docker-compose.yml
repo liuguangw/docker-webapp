@@ -8,13 +8,16 @@ services:
     restart: always
     volumes:
       - ./app/config/php/php.ini:/usr/local/etc/php/php.ini:ro
-      - ./app/sites:/var/www/sites:rw
+      - ./app/sites:/var/www/sites
     working_dir: /var/www/sites
     environment:
       DB_HOST: db_server
       REDIS_HOST: redis_server
       COMPOSER_MIRROR_URL: ${COMPOSER_MIRROR_URL}
       TZ: ${TIME_ZONE}
+    depends_on:
+      - db_server
+      - redis_server
 
   nginx:
     image: nginx:${NGINX_IMAGE_VERSION}
@@ -31,6 +34,8 @@ services:
     working_dir: /var/log/nginx
     environment:
       TZ: ${TIME_ZONE}
+    depends_on:
+      - php_server
     ports:
       - "80:80"
       - "443:443"
@@ -48,6 +53,8 @@ services:
       - ./app/config/mysql/my.cnf:/etc/mysql/conf.d/mydb.cnf:ro
       - ./app/db_data:/var/lib/mysql
       - ./app/tmp:/home/tmp #用于备份还原时,存放sql文件的临时目录
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
 
   redis_server:
     image: redis:${REDIS_IMAGE_VERSION}

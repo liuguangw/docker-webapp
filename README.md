@@ -31,7 +31,7 @@ cd docker-webapp
 #给脚本添加执行权限
 chmod +x *.sh
 #复制 .env.dist 到 .env (复制后注意:参考.env文件内的资料,修改初始密码等信息!!!!)
-copy .env.dist .env
+cp .env.dist .env
 #启动
 ./run.sh
 ```
@@ -43,6 +43,8 @@ app - 项目文件夹
 	db_data - 数据库文件存放目录
 	redis_data - redis文件存放目录
 	config - 配置目录
+		mysql - mysql配置目录
+			mysql.cnf 配置文件
 		nginx - nginx配置目录
 			vhost - 虚拟主机配置
 				localhost.conf - 默认网站配置文件

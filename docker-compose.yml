@@ -27,6 +27,7 @@ services:
     volumes:
       - ./app/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./app/config/nginx/phpfpm.conf:/etc/nginx/phpfpm.conf:ro
+      - ./app/config/nginx/ssl.conf:/etc/nginx/ssl.conf:ro
       - ./app/config/nginx/vhost:/etc/nginx/vhost:ro
       - ./app/config/nginx/ssl:/etc/nginx/ssl:ro #ssl证书相关目录
       - ./app/sites:/var/www/sites:ro
